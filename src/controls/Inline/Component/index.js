@@ -23,7 +23,9 @@ export default class Inline extends Component {
   };
 
   renderInFlatList(): Object {
-    const { config, currentState, onChange, translations } = this.props;
+    const {
+      config, currentState, onChange, translations,
+    } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', config.className)} aria-label="rdw-inline-control">
         {
@@ -40,12 +42,13 @@ export default class Inline extends Component {
                 }
                 title={config[style].title || translations[`components.controls.inline.${style}`]}
               >
-                <img
-                  alt=""
-                  src={config[style].icon}
-                />
-              </Option>),
-            )
+                {typeof config[style].icon === 'object' ? config[style].icon : (
+                  <img
+                    src={config[style].icon}
+                    alt=""
+                  />
+                )}
+               </Option>))
         }
       </div>
     );
@@ -96,7 +99,7 @@ export default class Inline extends Component {
                   src={config[style].icon}
                   alt=""
                 />
-              </DropdownOption>))
+               </DropdownOption>))
         }
       </Dropdown>
     );

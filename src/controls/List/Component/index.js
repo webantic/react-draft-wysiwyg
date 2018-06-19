@@ -48,9 +48,11 @@ export default class LayoutComponent extends Component {
       currentState: { listType },
       translations,
       indentDisabled,
-      outdentDisabled
+      outdentDisabled,
     } = this.props;
-    const { options, unordered, ordered, indent, outdent, className } = config;
+    const {
+      options, unordered, ordered, indent, outdent, className,
+    } = config;
     return (
       <div className={classNames('rdw-list-wrapper', className)} aria-label="rdw-list-control">
         {options.indexOf('unordered') >= 0 && <Option
@@ -60,10 +62,12 @@ export default class LayoutComponent extends Component {
           active={listType === 'unordered'}
           title={unordered.title || translations['components.controls.list.unordered']}
         >
-          <img
-            src={unordered.icon}
-            alt=""
-          />
+          {typeof unordered.icon === 'object' ? unordered.icon : (
+            <img
+              src={unordered.icon}
+              alt=""
+            />
+          )}
         </Option>}
         {options.indexOf('ordered') >= 0 && <Option
           value="ordered"
@@ -72,10 +76,12 @@ export default class LayoutComponent extends Component {
           active={listType === 'ordered'}
           title={ordered.title || translations['components.controls.list.ordered']}
         >
-          <img
-            src={ordered.icon}
-            alt=""
-          />
+          {typeof ordered.icon === 'object' ? ordered.icon : (
+            <img
+              src={ordered.icon}
+              alt=""
+            />
+          )}
         </Option>}
         {options.indexOf('indent') >= 0 && <Option
           onClick={this.indent}
@@ -83,10 +89,12 @@ export default class LayoutComponent extends Component {
           className={classNames(indent.className)}
           title={indent.title || translations['components.controls.list.indent']}
         >
-          <img
-            src={indent.icon}
-            alt=""
-          />
+          {typeof indent.icon === 'object' ? indent.icon : (
+            <img
+              src={indent.icon}
+              alt=""
+            />
+          )}
         </Option>}
         {options.indexOf('outdent') >= 0 && <Option
           onClick={this.outdent}
@@ -94,10 +102,12 @@ export default class LayoutComponent extends Component {
           className={classNames(outdent.className)}
           title={outdent.title || translations['components.controls.list.outdent']}
         >
-          <img
-            src={outdent.icon}
-            alt=""
-          />
+          {typeof outdent.icon === 'object' ? outdent.icon : (
+            <img
+              src={outdent.icon}
+              alt=""
+            />
+          )}
         </Option>}
       </div>
     );
@@ -114,7 +124,9 @@ export default class LayoutComponent extends Component {
       currentState: { listType },
       translations,
     } = this.props;
-    const { options, className, dropdownClassName, title } = config;
+    const {
+      options, className, dropdownClassName, title,
+    } = config;
     return (
       <Dropdown
         className={classNames('rdw-list-dropdown', className)}

@@ -96,7 +96,7 @@ class LayoutComponent extends Component {
                   style={{ backgroundColor: c }}
                   className="rdw-colorpicker-cube"
                 />
-              </Option>))
+               </Option>))
           }
         </span>
       </div>
@@ -122,10 +122,12 @@ class LayoutComponent extends Component {
           onClick={onExpandEvent}
           className={classNames(className)}
         >
-          <img
-            src={icon}
-            alt=""
-          />
+          {typeof icon === 'object' ? icon : (
+            <img
+              src={icon}
+              alt=""
+            />
+          )}
         </Option>
         {expanded ? this.renderModal() : undefined}
       </div>

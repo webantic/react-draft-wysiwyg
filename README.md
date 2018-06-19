@@ -7,6 +7,10 @@ A Wysiwyg editor built using ReactJS and DraftJS libraries.
 
 ![](http://i.imgur.com/tU7kJ6i.gif)
 
+## Change log
+
+* 19/07/18 - Added support for icon fonts in the toolbar
+
 ## Features
 - Configurable toolbar with option to add/remove controls.
 - Option to change the order of the controls in the toolbar.

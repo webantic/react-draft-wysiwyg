@@ -222,7 +222,8 @@ class LayoutComponent extends Component {
                 onDrop={this.onImageDrop}
                 className={classNames(
                   'rdw-image-modal-upload-option',
-                  { 'rdw-image-modal-upload-option-highlighted': dragEnter })}
+                  { 'rdw-image-modal-upload-option-highlighted': dragEnter },
+)}
               >
                 <label
                   htmlFor="file"
@@ -336,10 +337,12 @@ class LayoutComponent extends Component {
           onClick={onExpandEvent}
           title={title || translations['components.controls.image.image']}
         >
-          <img
-            src={icon}
-            alt=""
-          />
+          {typeof icon === 'object' ? icon : (
+            <img
+              src={icon}
+              alt=""
+            />
+          )}
         </Option>
         {expanded ? this.renderAddImageModal() : undefined}
       </div>

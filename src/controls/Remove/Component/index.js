@@ -16,10 +16,12 @@ const RemoveComponent = ({ config, onChange, translations }) => {
         onClick={onChange}
         title={title || translations['components.controls.remove.remove']}
       >
-        <img
-          src={icon}
-          alt=""
-        />
+        {typeof icon === 'object' ? icon : (
+          <img
+            src={icon}
+            alt=""
+          />
+        )}
       </Option>
     </div>
   );

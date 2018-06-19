@@ -154,7 +154,9 @@ class LayoutComponent extends Component {
 
   renderInFlatList(): Object {
     const {
-      config: { options, link, unlink, className },
+      config: {
+        options, link, unlink, className,
+      },
       currentState,
       expanded,
       translations,
@@ -170,10 +172,12 @@ class LayoutComponent extends Component {
           aria-expanded={showModal}
           title={link.title || translations['components.controls.link.link']}
         >
-          <img
-            src={link.icon}
-            alt=""
-          />
+          {typeof link.icon === 'object' ? link.icon : (
+            <img
+              src={link.icon}
+              alt=""
+            />
+          )}
         </Option>}
         {options.indexOf('unlink') >= 0 && <Option
           disabled={!currentState.link}
@@ -182,10 +186,12 @@ class LayoutComponent extends Component {
           onClick={this.removeLink}
           title={unlink.title || translations['components.controls.link.unlink']}
         >
-          <img
-            src={unlink.icon}
-            alt=""
-          />
+          {typeof unlink.icon === 'object' ? outdent.icon : (
+            <img
+              src={unlink.icon}
+              alt=""
+            />
+          )}
         </Option>}
         {expanded && showModal ? this.renderAddLinkModal() : undefined}
       </div>
@@ -203,7 +209,9 @@ class LayoutComponent extends Component {
       currentState,
       translations,
     } = this.props;
-    const { options, link, unlink, className, dropdownClassName, title } = config;
+    const {
+      options, link, unlink, className, dropdownClassName, title,
+    } = config;
     const { showModal } = this.state;
     return (
       <div
@@ -222,19 +230,23 @@ class LayoutComponent extends Component {
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
         >
-          <img
-            src={getFirstIcon(config)}
-            alt=""
-          />
+          {typeof getFirstIcon(config) === 'object' ? getFirstIcon(config) : (
+            <img
+              src={getFirstIcon(config)}
+              alt=""
+            />
+          )}
           {options.indexOf('link') >= 0 && <DropdownOption
             onClick={this.forceExpandAndShowModal}
             className={classNames('rdw-link-dropdownoption', link.className)}
             title={link.title || translations['components.controls.link.link']}
           >
-            <img
-              src={link.icon}
-              alt=""
-            />
+            {typeof link.icon === 'object' ? link.icon : (
+              <img
+                src={link.icon}
+                alt=""
+              />
+          )}
           </DropdownOption>}
           {options.indexOf('unlink') >= 0 && <DropdownOption
             onClick={this.removeLink}
@@ -242,10 +254,12 @@ class LayoutComponent extends Component {
             className={classNames('rdw-link-dropdownoption', unlink.className)}
             title={unlink.title || translations['components.controls.link.unlink']}
           >
-            <img
-              src={unlink.icon}
-              alt=""
-            />
+            {typeof unlink.icon === 'object' ? unlink.icon : (
+              <img
+                src={unlink.icon}
+                alt=""
+              />
+            )}
           </DropdownOption>}
         </Dropdown>
         {expanded && showModal ? this.renderAddLinkModal() : undefined}

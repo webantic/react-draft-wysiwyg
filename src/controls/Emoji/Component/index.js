@@ -35,7 +35,8 @@ class LayoutComponent extends Component {
             className="rdw-emoji-icon"
             alt=""
             onClick={this.onChange}
-          >{emoji}</span>))
+          >{emoji}
+          </span>))
         }
       </div>
     );
@@ -61,10 +62,12 @@ class LayoutComponent extends Component {
           value="unordered-list-item"
           onClick={onExpandEvent}
         >
-          <img
-            src={icon}
-            alt=""
-          />
+          {typeof icon === 'object' ? icon : (
+            <img
+              src={icon}
+              alt=""
+            />
+          )}
         </Option>
         {expanded ? this.renderEmojiModal() : undefined}
       </div>

@@ -23,7 +23,9 @@ export default class TextAlign extends Component {
 
   renderInFlatList(): Object {
     const {
-      config: { options, left, center, right, justify, className },
+      config: {
+        options, left, center, right, justify, className,
+      },
       onChange,
       currentState: { textAlignment },
       translations,
@@ -37,10 +39,12 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={left.title || translations['components.controls.textalign.left']}
         >
-          <img
-            src={left.icon}
-            alt=""
-          />
+          {typeof left.icon === 'object' ? left.icon : (
+            <img
+              src={left.icon}
+              alt=""
+            />
+          )}
         </Option>}
         {options.indexOf('center') >= 0 && <Option
           value="center"
@@ -49,10 +53,12 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={center.title || translations['components.controls.textalign.center']}
         >
-          <img
-            src={center.icon}
-            alt=""
-          />
+          {typeof center.icon === 'object' ? center.icon : (
+            <img
+              src={center.icon}
+              alt=""
+            />
+          )}
         </Option>}
         {options.indexOf('right') >= 0 && <Option
           value="right"
@@ -61,10 +67,12 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={right.title || translations['components.controls.textalign.right']}
         >
-          <img
-            src={right.icon}
-            alt=""
-          />
+          {typeof right.icon === 'object' ? right.icon : (
+            <img
+              src={right.icon}
+              alt=""
+            />
+          )}
         </Option>}
         {options.indexOf('justify') >= 0 && <Option
           value="justify"
@@ -73,10 +81,12 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={justify.title || translations['components.controls.textalign.justify']}
         >
-          <img
-            src={justify.icon}
-            alt=""
-          />
+          {typeof justify.icon === 'object' ? justify.icon : (
+            <img
+              src={justify.icon}
+              alt=""
+            />
+          )}
         </Option>}
       </div>
     );
@@ -93,7 +103,9 @@ export default class TextAlign extends Component {
       onChange,
       translations,
     } = this.props;
-    const { options, left, center, right, justify, className, dropdownClassName, title } = config;
+    const {
+      options, left, center, right, justify, className, dropdownClassName, title,
+    } = config;
     return (
       <Dropdown
         className={classNames('rdw-text-align-dropdown', className)}

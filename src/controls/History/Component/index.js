@@ -36,7 +36,9 @@ export default class History extends Component {
       currentState: { undoDisabled, redoDisabled },
       translations,
     } = this.props;
-    const { options, undo, redo, className, dropdownClassName, title } = config;
+    const {
+      options, undo, redo, className, dropdownClassName, title,
+    } = config;
     return (
       <Dropdown
         className={classNames('rdw-history-dropdown', className)}
@@ -48,10 +50,12 @@ export default class History extends Component {
         aria-label="rdw-history-control"
         title={title || translations['components.controls.history.history']}
       >
-        <img
-          src={getFirstIcon(config)}
-          alt=""
-        />
+        {typeof getFirstIcon(config) === 'object' ? getFirstIcon(config) : (
+          <img
+            src={getFirstIcon(config)}
+            alt=""
+          />
+          )}
         {options.indexOf('undo') >= 0 && <DropdownOption
           value="undo"
           onClick={this.onChange}
@@ -59,10 +63,12 @@ export default class History extends Component {
           className={classNames('rdw-history-dropdownoption', undo.className)}
           title={undo.title || translations['components.controls.history.undo']}
         >
-          <img
-            src={undo.icon}
-            alt=""
-          />
+          {typeof undo.icon === 'object' ? undo.icon : (
+            <img
+              src={undo.icon}
+              alt=""
+            />
+          )}
         </DropdownOption>}
         {options.indexOf('redo') >= 0 && <DropdownOption
           value="redo"
@@ -71,10 +77,12 @@ export default class History extends Component {
           className={classNames('rdw-history-dropdownoption', redo.className)}
           title={redo.title || translations['components.controls.history.redo']}
         >
-          <img
-            src={redo.icon}
-            alt=""
-          />
+          {typeof redo.icon === 'object' ? redo.icon : (
+            <img
+              src={redo.icon}
+              alt=""
+            />
+          )}
         </DropdownOption>}
       </Dropdown>
     );
@@ -82,7 +90,9 @@ export default class History extends Component {
 
   renderInFlatList(): Object {
     const {
-      config: { options, undo, redo, className },
+      config: {
+        options, undo, redo, className,
+      },
       currentState: { undoDisabled, redoDisabled },
       translations,
     } = this.props;
@@ -95,10 +105,12 @@ export default class History extends Component {
           disabled={undoDisabled}
           title={undo.title || translations['components.controls.history.undo']}
         >
-          <img
-            src={undo.icon}
-            alt=""
-          />
+          {typeof undo.icon === 'object' ? undo.icon : (
+            <img
+              src={undo.icon}
+              alt=""
+            />
+          )}
         </Option>}
         {options.indexOf('redo') >= 0 && <Option
           value="redo"
@@ -107,10 +119,12 @@ export default class History extends Component {
           disabled={redoDisabled}
           title={redo.title || translations['components.controls.history.redo']}
         >
-          <img
-            src={redo.icon}
-            alt=""
-          />
+          {typeof redo.icon === 'object' ? redo.icon : (
+            <img
+              src={redo.icon}
+              alt=""
+            />
+          )}
         </Option>}
       </div>
     );
